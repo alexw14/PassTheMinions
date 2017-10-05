@@ -1,41 +1,35 @@
 body {
+    box-sizing: border-box;
     margin: 0 auto;
-    /* margin-top: 0px; */
+    margin-top: 30px;
     text-align: center;
     font-size: 40px;
-}
 
+}
+header, footer {
+    background-color: lightgray;
+}
+.top-container {
+    
+}
 .container {
     display: flex;
     justify-content: center;
-    height: 700px;
+    height: 600px;
 }
-.left-container, .right-container {
-    height: 700px;
-    flex-direction: column;
-
-}
-
 .display {
-    background-color: lightgray;
+    color: black;
     width: 400px;
 }
-
-.player1, .player2 {
+.left-container, .right-container {
     color: white;
     width: 200px;
 }
-
-.player1, .player4 {
+.left-container {
     background-color: red;
 }
-
-.player2, .player3 {
+.right-container {
     background-color: blue;
-}
-
-.player3, .player4 {
-    margin: auto;
 }
 .dice {
     margin-top: 150px;
