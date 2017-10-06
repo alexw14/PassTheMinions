@@ -57,6 +57,9 @@ header, footer {
     border-radius: 15px;
     box-shadow: 0 9px #999;
 }
+.rollscore {
+    font-size: 20px;
+}
 button:hover {
     background-color: #3e8e41
 }
@@ -80,6 +83,8 @@ img {
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-timing-function: linear;
 }
+ */
+
 @-webkit-keyframes rotate {
     from {
       -webkit-transform: rotate(0deg);
@@ -87,4 +92,4 @@ img {
     to { 
       -webkit-transform: rotate(360deg);
     }
-} */
+}
