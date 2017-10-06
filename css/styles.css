@@ -4,13 +4,9 @@ body {
     margin-top: 30px;
     text-align: center;
     font-size: 40px;
-
 }
 header, footer {
     background-color: lightgray;
-}
-.top-container {
-    
 }
 .container {
     display: flex;
@@ -31,6 +27,9 @@ header, footer {
 .right-container {
     background-color: blue;
 }
+.player1, .player2 {
+    margin-top: 30px;
+}
 .dice {
     margin-top: 150px;
 }
@@ -38,5 +37,13 @@ header, footer {
     margin-top: 150px;
 }
 .bank {
-    margin-top: 10px;
+    margin-top: 40px;
+}
+.roll {
+    border: 3px solid black;
+}
+img {
+    width: 100px;
+    height: 100px;
+    padding: 10px;
 }
