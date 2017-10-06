@@ -7,7 +7,8 @@ var dice2;
 var score1;
 var score2;
 var rollScore;
-var currentRound;
+var rollTextDisplay;
+var currentRoundScore = 0;
 
 // images
 pigImgs[0] = 'images/Pos1_Sider_Left.png'
@@ -91,34 +92,57 @@ function roll() {
     dice2 = d2;
     console.log(dice1);
     console.log(dice2);
-    checkPos();
+    checkDice();
+    scoreUpdate();
     render();
 }
 
-function checkPos() {
-    rollScore = 0;
-    if (dice1[2] === dice2[2]) {
-        if (dice1[2] === 0 || dice1[2] === 1) {
-            rollScore = 1;
-        } else {
-            rollScore = (dice1[1] + dice2[1]) * 2;
+function checkDice() {
+    rollScore = 0;      // initial roll score is 0
+    if (dice1[2] === dice2[2]) {                    // if dice1 and dice2 are the same
+        if (dice1[2] === 0 || dice1[2] === 1) {     // dice1 and dice2 are the same sider
+            rollScore = 1;                          // score is 1
+            rollTextDisplay = `Sider`;
+        } else {                                    // dice1 and dice2 are not sider
+            rollScore = (dice1[1] + dice2[1]) * 2;  // score is double pts
+            rollTextDisplay = `Double ${dice1[0]}`;
         }
-    } else if (dice1[2] === 0 && dice2[2] === 1) {
+    } else if (dice1[2] === 0 && dice2[2] === 1) {  // else if dice1 is sider left and dice2 is sider right
         rollScore = 0;
-    } else if (dice1[2] === 1 && dice2[2] === 0) {
+        rollTextDisplay = `Pig Out`;
+    } else if (dice1[2] === 1 && dice2[2] === 0) {  // else if dice1 is sider right and dice2 is sider left
         rollScore = 0;
-    } else {
-        rollScore = dice1[1] + dice2[1];
+        rollTextDisplay = `Pig Out`;
     }
+    // else if (dice1[2] !== dice2[2]) {               // if two dice are different
+    //     if (dice1[2] === 0 || dice1[2] === 1) {     // if one dice is a sider and the other is not
+    //         rollScore = Math.max(dice1[1], dice2[1]);   // the sider is worth 0
+    //         rollTextDisplay = `${dice1[0]} and ${dice2[0]}`;
+    //     } else if (dice2[2] === 0 || dice2[2] === 1) {
+    //         rollScore = Math.max(dice1[1], dice2[1]);
+    //         rollTextDisplay = `${dice1[0]} and ${dice2[0]}`;
+    //     }
+    else {                                      // if both dice are not the same
+        rollScore = dice1[1] + dice2[1];
+        rollTextDisplay = `${dice1[0]} and ${dice2[0]}`;
+    }
+}
+
+function scoreUpdate () {
+    currentRoundScore += rollScore;
 }
 
 function render() {
     $('#dice1').attr('src', pigImgs[dice1[2]]);
     $('#dice2').attr('src', pigImgs[dice2[2]]);
-    $('.rollscore').html(`${dice1[0]}(${dice1[1]} pts) + ${dice2[0]}(${dice2[1]} pts) = ${rollScore} pts`);
+    $('.rollscore').html(`${rollTextDisplay} ${rollScore} pts`);
+    $('.thisturnscore').html(`${currentRoundScore} pts`);
+    // $('.v1').html(`${dice1[0]}`);
+    // $('.v2').html(`${dice2[0]}`);
 }
 
-/* Notes
+/*
+ Notes
  P(Sider_Left)  = 0.35  = 1 pt      range: 0-34
  P(Sider_Right) = 0.30  = 1 pt      range: 35-64
  P(Razorback)   = 0.20  = 5 pts     range: 65-84

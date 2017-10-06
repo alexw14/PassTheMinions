@@ -13,7 +13,7 @@ header, footer {
     justify-content: center;
     height: 600px;
 }
-.display {
+main {
     color: black;
     width: 400px;
 }
@@ -32,11 +32,12 @@ header, footer {
 }
 .dice {
     margin-top: 100px;
-    /* margin-bottom: -20px; */
+    margin-bottom: 40px;
 }
 /* .value {
     display: inline-block;
     padding: 0 20px;
+    font-size: 10px;
 } */
 .score {
     margin-top: 150px;
