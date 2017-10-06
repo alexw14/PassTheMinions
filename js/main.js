@@ -18,30 +18,46 @@ $('.roll').on('click', roll);
 
 // functions
 
-// compute the output pigs
-function compute() {
-    var rand = Math.random();
-    console.log(rand);
-    rand = rand.toFixed(2) * 100;
-    console.log(rand);
-    if (rand <= 34) {
-        console.log('Sider Left');
-    } else if (rand > 34 && rand <= 64) {
-        console.log('Sider Right');
-    } else if (rand > 64 && rand <= 84) {
-        console.log('Razorback');
-    } else if (rand > 84 && rand <= 94) {
-        console.log('Trotter');
-    } else if (rand > 94 && rand <= 98) {
-        console.log('Snouter');
-    } else if (rand > 98) {
-        console.log('Leaning Jowler');
+function compute() {                                // compute the result of one rolled pig
+    var result;
+    var rand = Math.floor(Math.random() * 100);    // randomize a number between 0 to 99
+    if (rand <= 34) {                               // p(Sider Left) = 0.35; range 0-34
+        result = 1;
+    } else if (rand > 34 && rand <= 64) {           // p(Sider Right) = 0.30; range 35-64
+        result = 1;
+    } else if (rand > 64 && rand <= 84) {           // p(Razorback) = 0.20; range 65-84
+        result = 5;
+    } else if (rand > 84 && rand <= 94) {           // p(Trotter) = 0.10; range 85-94
+        result = 5;
+    } else if (rand > 94 && rand <= 98) {           // p(Snouter) = 0.04; range 95-98
+        result = 10;
+    } else if (rand > 98) {                         // p(Leaning Jowler) = 0.01; range 99
+        result = 15;
     }
+    return result;
 }
 
 // when roll is clicked, loop through images
 function roll() {
-
+    // var stopped = true;
+    // var t;
+    var random1 = Math.floor(Math.random() * 6);
+    var random2 = Math.floor(Math.random() * 6);
+    function change() {
+        $('#dice1').attr('src', pigImgs[random1]);
+        $('#dice2').attr('src', pigImgs[random2]);
+    }
+    change();
+    // function stopstart() {
+    //     if (stopped) {
+    //         stopped = false;
+    //         t = setInterval(change, 500);
+    //     } else {
+    //         clearInterval(t);
+    //         stopped = true;
+    //     }
+    // }
+    // stopstart();
 }
 
 /* Notes

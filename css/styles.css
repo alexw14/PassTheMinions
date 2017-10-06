@@ -31,7 +31,12 @@ header, footer {
     margin-top: 30px;
 }
 .dice {
-    margin-top: 150px;
+    margin-top: 100px;
+    margin-bottom: -20px;
+}
+.value {
+    display: inline-block;
+    padding: 0 20px;
 }
 .score {
     margin-top: 150px;
@@ -40,7 +45,25 @@ header, footer {
     margin-top: 40px;
 }
 .roll {
-    border: 3px solid black;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+button:hover {
+    background-color: #3e8e41
+}
+button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
 }
 .bank {
     border: 3px solid black;
