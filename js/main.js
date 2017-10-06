@@ -11,7 +11,7 @@ pigImgs[4] = 'images/Pos5_Snouter.png'
 pigImgs[5] = 'images/Pos6_Leaning_Jowler.png'
 
 // cached elements
-var dice = document.querySelectorAll('.dice');
+// var dice = document.querySelectorAll('.dice');
 
 // event listeners
 $('.roll').on('click', roll);
@@ -58,6 +58,14 @@ function roll() {
     //     }
     // }
     // stopstart();
+}
+
+function init() {
+
+}
+
+function render() {
+
 }
 
 /* Notes
