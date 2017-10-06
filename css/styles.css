@@ -42,6 +42,9 @@ header, footer {
 .roll {
     border: 3px solid black;
 }
+.bank {
+    border: 3px solid black;
+}
 img {
     width: 100px;
     height: 100px;
