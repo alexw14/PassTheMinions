@@ -129,7 +129,7 @@ function checkDice() {
 }
 
 function scoreUpdate () {
-    currentRoundScore += rollScore;
+    rollTextDisplay === 'Pig Out' ? currentRoundScore = 0 : currentRoundScore += rollScore;
 }
 
 function render() {
