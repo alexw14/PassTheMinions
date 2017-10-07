@@ -45,7 +45,7 @@ main {
 .bank {
     margin-top: 40px;
 }
-.roll {
+.roll, .bank {
     padding: 15px 25px;
     font-size: 24px;
     cursor: pointer;
@@ -61,16 +61,13 @@ main {
 .rollscore {
     font-size: 20px;
 }
-button:hover {
+button:hover, .bank:hover {
     background-color: #3e8e41
 }
-button:active {
+button:active, .bank:active {
     background-color: #3e8e41;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
-}
-.bank {
-    border: 3px solid black;
 }
 img {
     width: 100px;

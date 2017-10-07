@@ -9,6 +9,7 @@ var score2;
 var rollScore;
 var rollTextDisplay;
 var currentRoundScore = 0;
+var turn;
 
 // images
 pigImgs[0] = 'images/Pos1_Sider_Left.png'
@@ -25,7 +26,7 @@ pigImgs[5] = 'images/Pos6_Leaning_Jowler.png'
 $('.roll').on('click', roll);
 $('.roll').on('mousedown', rotate)
 $('.roll').on('mouseup', stopRotate)
-// $('.bank').on('click', bank);
+$('.bank').on('click', bank);
 
 // functions
 
@@ -51,7 +52,10 @@ function stopRotate() {
 }
 
 function init() {
-
+    turn = 1;
+    score1 = 0;
+    score2 = 0;
+    render();
 }
 
 function calc() {                                   // calculate the result of one rolled pig
@@ -86,12 +90,8 @@ function calc() {                                   // calculate the result of o
 }
 
 function roll() {
-    var d1 = calc();        // roll dice 1
-    dice1 = d1;
-    var d2 = calc();        // roll dice 2
-    dice2 = d2;
-    console.log(dice1);
-    console.log(dice2);
+    dice1 = calc();        // roll dice 1
+    dice2 = calc();        // roll dice 2
     checkDice();
     scoreUpdate();
     render();
@@ -127,9 +127,27 @@ function checkDice() {
         rollTextDisplay = `${dice1[0]} and ${dice2[0]}`;
     }
 }
-
-function scoreUpdate () {
+function turnUpdate() {
+    if (turn % 2 !== 0) {
+        $('.right-container').css({ 'opacity': '0.2' });
+        $('button.bank2').prop('disabled', true);
+        $('.left-container').css({ 'opacity': '1' });
+        $('button.bank1').prop('disabled', false);
+    } else {
+        $('.right-container').css({ 'opacity': '1' });
+        $('button.bank2').prop('disabled', false);
+        $('.left-container').css({ 'opacity': '0.2' });
+        $('button.bank1').prop('disabled', true);
+    }
+}
+function scoreUpdate() {
     rollTextDisplay === 'Pig Out' ? currentRoundScore = 0 : currentRoundScore += rollScore;
+}
+
+function bank() {
+    turn % 2 !== 0 ? score1 += currentRoundScore : score2 += currentRoundScore;
+    turn++;
+    render();
 }
 
 function render() {
@@ -137,9 +155,10 @@ function render() {
     $('#dice2').attr('src', pigImgs[dice2[2]]);
     $('.rollscore').html(`${rollTextDisplay} ${rollScore} pts`);
     $('.thisturnscore').html(`${currentRoundScore} pts`);
-    // $('.v1').html(`${dice1[0]}`);
-    // $('.v2').html(`${dice2[0]}`);
+    turnUpdate();
 }
+
+init();
 
 /*
  Notes
