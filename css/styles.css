@@ -22,10 +22,10 @@ main {
     width: 200px;
 }
 .left-container {
-    background-color: lightskyblue;
+    background-color: firebrick;
 }
 .right-container {
-    background-color: lightcoral;
+    background-color: dodgerblue;
 }
 .player1, .player2 {
     margin-top: 30px;
