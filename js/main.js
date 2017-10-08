@@ -158,6 +158,15 @@ function turnUpdate() {
     }
 }
 
+function checkWinner() {
+    if (score1 >= 100) {
+        $('.thisturnscore').html(`Player 1 Wins!`);
+    }
+    if (score2 >= 100) {
+        $('.thisturnscore').html(`Player 2 Wins!`);
+    }
+}
+
 function render() {
     $('#dice1').attr('src', Imgs[dice1[2]]);
     $('#dice2').attr('src', Imgs[dice2[2]]);
@@ -165,6 +174,7 @@ function render() {
     $('.thisturnscore').html(`${currentRoundScore}`);
     $('.score1').html(`${score1}`);
     $('.score2').html(`${score2}`);
+    checkWinner();
     turnUpdate();
 }
 
