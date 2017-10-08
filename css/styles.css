@@ -4,6 +4,8 @@ body {
     margin-top: 30px;
     text-align: center;
     font-size: 40px;
+    /* background-image: url("../images/background.jpg");
+    background-size: cover; */
 }
 header, footer {
     background-color: lightgray;
@@ -14,6 +16,7 @@ header, footer {
     height: 600px;
 }
 main {
+    background-color: white;
     color: black;
     width: 400px;
 }
@@ -22,7 +25,7 @@ main {
     width: 200px;
 }
 .left-container {
-    background-color: firebrick;
+    background-color: gold;
 }
 .right-container {
     background-color: dodgerblue;

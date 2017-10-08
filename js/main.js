@@ -95,6 +95,10 @@ function roll() {
     dice2 = calc();        // roll dice 2
     checkDice();
     scoreUpdate();
+    if (rollTextDisplay === 'Pass the Minions!') {
+        turn++;
+        turnUpdate();
+    }
     render();
 }
 
@@ -129,40 +133,42 @@ function checkDice() {
         }
     }
 }
-    function scoreUpdate() {
-        rollTextDisplay === 'Pass the Minions!' ? currentRoundScore = 0 : currentRoundScore += rollScore;
+function scoreUpdate() {
+    rollTextDisplay === 'Pass the Minions!' ? currentRoundScore = 0 : currentRoundScore += rollScore;
+}
+
+function bank() {
+    turn % 2 !== 0 ? score1 += currentRoundScore : score2 += currentRoundScore;
+    turn++;
+    currentRoundScore = 0;
+    render();
+}
+
+function turnUpdate() {
+    if (turn % 2 !== 0) {
+        $('.right-container').css({ 'opacity': '0.5' });
+        $('button.bank2').prop('disabled', true);
+        $('.left-container').css({ 'opacity': '1' });
+        $('button.bank1').prop('disabled', false);
+    } else {
+        $('.right-container').css({ 'opacity': '1' });
+        $('button.bank2').prop('disabled', false);
+        $('.left-container').css({ 'opacity': '0.5' });
+        $('button.bank1').prop('disabled', true);
     }
+}
 
-    function bank() {
-        turn % 2 !== 0 ? score1 += currentRoundScore : score2 += currentRoundScore;
-        turn++;
+function render() {
+    $('#dice1').attr('src', Imgs[dice1[2]]);
+    $('#dice2').attr('src', Imgs[dice2[2]]);
+    $('.rollscore').html(`${rollTextDisplay} <br> + ${rollScore}`);
+    $('.thisturnscore').html(`${currentRoundScore}`);
+    $('.score1').html(`${score1}`);
+    $('.score2').html(`${score2}`);
+    turnUpdate();
+}
 
-        render();
-    }
-
-    function turnUpdate() {
-        if (turn % 2 !== 0) {
-            $('.right-container').css({ 'opacity': '0.5' });
-            $('button.bank2').prop('disabled', true);
-            $('.left-container').css({ 'opacity': '1' });
-            $('button.bank1').prop('disabled', false);
-        } else {
-            $('.right-container').css({ 'opacity': '1' });
-            $('button.bank2').prop('disabled', false);
-            $('.left-container').css({ 'opacity': '0.5' });
-            $('button.bank1').prop('disabled', true);
-        }
-    }
-
-    function render() {
-        $('#dice1').attr('src', Imgs[dice1[2]]);
-        $('#dice2').attr('src', Imgs[dice2[2]]);
-        $('.rollscore').html(`${rollTextDisplay} <br> + ${rollScore}`);
-        $('.thisturnscore').html(`${currentRoundScore} pts`);
-        turnUpdate();
-    }
-
-    init();
+init();
 
 /*
  Notes
