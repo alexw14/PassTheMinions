@@ -59,7 +59,11 @@ main {
 .bank {
     margin-top: 40px;
 }
-.roll, .bank {
+.newgame {
+    /* display: none; */
+    visibility: hidden;
+}
+.roll, .bank, .newgame {
     padding: 15px 25px;
     font-size: 24px;
     cursor: pointer;

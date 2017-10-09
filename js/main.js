@@ -27,6 +27,7 @@ $('.roll').on('click', roll);
 $('.roll').on('mousedown', rotate);
 $('.roll').on('mouseup', stopRotate);
 $('.bank').on('click', bank);
+$('.newgame').on('click', init);
 
 // functions
 
@@ -166,10 +167,12 @@ function turnUpdate() {
 function checkWinner() {
     if (score1 >= 100) {
         $('.display').html(`Player 1 Wins!`);
+        $('.newgame').css({'visibility': 'visible'});
 
     }
     if (score2 >= 100) {
         $('.display').html(`Player 2 Wins!`);
+        $('.newgame').css({'visibility': 'visible'});
     }
 }
 
@@ -182,8 +185,8 @@ function render() {
     } else {
         $('.display').html(`${currentRoundScore}`);
     }
-    $('.score1').html(`${score1}`);
-    $('.score2').html(`${score2}`);
+    $('.score1').html(`Points: ${score1}`);
+    $('.score2').html(`Points: ${score2}`);
     checkWinner();
     turnUpdate();
 }
