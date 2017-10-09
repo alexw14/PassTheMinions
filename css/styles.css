@@ -4,6 +4,8 @@ body {
     margin-top: 30px;
     text-align: center;
     font-size: 40px;
+    font-family: "Maven Pro", sans-serif;
+    text-transform: uppercase;
     /* background-image: url("../images/background.jpg");
     background-size: cover; */
 }
@@ -15,7 +17,7 @@ header, footer {
     width: 800px;
     height: 600px;
     background-color: black;
-    display: none;
+    visibility: hidden;
 }
 .hidden-container {
     display: flex;

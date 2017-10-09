@@ -1,5 +1,5 @@
 // constants
-const Imgs = new Array();
+const imgs = new Array();
 
 // app variables
 var dice1;
@@ -12,12 +12,13 @@ var currentRoundScore = 0;
 var turn;
 
 // images
-Imgs[0] = 'images/Pos1_tongue.png'
-Imgs[1] = 'images/Pos2_uninterested.png'
-Imgs[2] = 'images/Pos3_cupcake.png'
-Imgs[3] = 'images/Pos4_happy.png'
-Imgs[4] = 'images/Pos5_dancing.png'
-Imgs[5] = 'images/Pos6_banana.png'
+imgs[0] = 'images/Pos1_tongue.png'
+imgs[1] = 'images/Pos2_uninterested.png'
+imgs[2] = 'images/Pos3_cupcake.png'
+imgs[3] = 'images/Pos4_happy.png'
+imgs[4] = 'images/Pos5_dancing.png'
+imgs[5] = 'images/Pos6_banana.png'
+imgs[6] = 'images/minion_rotate.png'
 
 // cached elements
 // var dice = document.querySelectorAll('.dice');
@@ -61,8 +62,8 @@ function init() {
     rollScore = 0;
     rollTextDisplay = '';
     currentRoundScore = 0;
-    dice1 = ['', 0, 'images/minion_rotate.png'];
-    dice2 = ['', 0, 'images/minion_rotate.png']
+    dice1 = ['', 0, 6];
+    dice2 = ['', 0, 6];
     render();
 }
 
@@ -184,8 +185,8 @@ function checkWinner() {
 
 function render() {
     $('.newgame').css({'visibility': 'hidden'});
-    $('#dice1').attr('src', Imgs[dice1[2]]);
-    $('#dice2').attr('src', Imgs[dice2[2]]);
+    $('#dice1').attr('src', imgs[dice1[2]]);
+    $('#dice2').attr('src', imgs[dice2[2]]);
     $('.rollscore').html(`${rollTextDisplay} <br> + ${rollScore}`);
     if (currentRoundScore === 0) {
         turn % 2 !== 0 ? $('.display').html(`Player 1's turn!`) : $('.display').html(`Player 2's turn!`);
