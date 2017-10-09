@@ -13,10 +13,13 @@
 <body>
     <div class="top-container">
         <header>Pass the Minions</header>
+        <div class="hidden-container">
+            <div class="hidden">Hidden Intro Message</div>
+        </div>
     </div>
     <div class="container">
         <div class="left-container">
-            <div class="player1">Player 1</div>
+            <div class="player1"><img src="images/player1.png"></div>
             <div class="score score1">Total Score</div>
             <button class="bank bank1">Bank</button>
             <!-- <div class="player3">Player 3
@@ -25,18 +28,18 @@
             </div> -->
         </div>
         <main>
-            <p class="thisturnscore">0</p>
+            <p class="display">Let's Play!</p>
             <p class="rollscore">0</p>
             <p class="dice">
-                <img id="dice1" src="images/minion_rotate.png">
-                <img id="dice2" src="images/minion_rotate.png">
+                <img id="dice1" class="rotate" src="images/minion_rotate.png">
+                <img id="dice2" class="rotate" src="images/minion_rotate.png">
                 <!-- <div class="value v1">Value1</div>
                 <div class="value v2">Value2</div> -->
             </p>
             <button class="roll">Roll</button>
         </main>
         <div class="right-container">
-            <div class="player2">Player 2</div>
+            <div class="player2"><img src="images/player2.png"></div>
             <div class="score score2">Total Score</div>
             <button class="bank bank2">Bank</button>
             <!-- <div class="player4">Player 4

@@ -36,7 +36,7 @@ function rotate() {
     var rollDice2 = $('#dice2').attr('src', 'images/minion_rotate.png');
     // var rollDice1 = $('#dice1').attr('src', pigImgs[0]);
     // var rollDice2 = $('#dice2').attr('src', pigImgs[1]);
-    $('img').css({
+    $('.rotate').css({
         '-webkit-animation-name': 'rotate',
         '-webkit-animation-duration': '0.3s',
         '-webkit-animation-iteration-count': 'infinite',
@@ -47,7 +47,7 @@ function rotate() {
 }
 // stop rotate the images of pig when mouse is released
 function stopRotate() {
-    $('img').css({
+    $('.rotate').css({
         '-webkit-animation-iteration-count': '1',
         '-webkit-animation-timing-function': 'ease-out'
     });
@@ -145,6 +145,11 @@ function bank() {
 }
 
 function turnUpdate() {
+    if (score1 >= 100 || score2 >= 100) {
+        $('button.bank1').prop('disabled', true);
+        $('button.bank2').prop('disabled', true);
+        return;
+    }
     if (turn % 2 !== 0) {
         $('.right-container').css({ 'opacity': '0.5' });
         $('button.bank2').prop('disabled', true);
@@ -160,10 +165,11 @@ function turnUpdate() {
 
 function checkWinner() {
     if (score1 >= 100) {
-        $('.thisturnscore').html(`Player 1 Wins!`);
+        $('.display').html(`Player 1 Wins!`);
+
     }
     if (score2 >= 100) {
-        $('.thisturnscore').html(`Player 2 Wins!`);
+        $('.display').html(`Player 2 Wins!`);
     }
 }
 
@@ -171,7 +177,11 @@ function render() {
     $('#dice1').attr('src', Imgs[dice1[2]]);
     $('#dice2').attr('src', Imgs[dice2[2]]);
     $('.rollscore').html(`${rollTextDisplay} <br> + ${rollScore}`);
-    $('.thisturnscore').html(`${currentRoundScore}`);
+    if (currentRoundScore === 0) {
+        turn % 2 !== 0 ? $('.display').html(`Player 1's turn!`) : $('.display').html(`Player 2's turn!`);
+    } else {
+        $('.display').html(`${currentRoundScore}`);
+    }
     $('.score1').html(`${score1}`);
     $('.score2').html(`${score2}`);
     checkWinner();

@@ -10,6 +10,17 @@ body {
 header, footer {
     background-color: lightgray;
 }
+.hidden {
+    position: absolute;
+    width: 800px;
+    height: 600px;
+    background-color: black;
+    display: none;
+}
+.hidden-container {
+    display: flex;
+    justify-content: center;
+}
 .container {
     display: flex;
     justify-content: center;
@@ -25,7 +36,7 @@ main {
     width: 200px;
 }
 .left-container {
-    background-color: gold;
+    background-color: firebrick;
 }
 .right-container {
     background-color: dodgerblue;
