@@ -58,6 +58,12 @@ function init() {
     turn = 1;
     score1 = 0;
     score2 = 0;
+    rollScore = 0;
+    rollTextDisplay = '';
+    currentRoundScore = 0;
+    dice1 = ['', 0, 'images/minion_rotate.png'];
+    dice2 = ['', 0, 'images/minion_rotate.png']
+    render();
 }
 
 function calc() {                                   // calculate the result of one rolled pig
@@ -177,6 +183,7 @@ function checkWinner() {
 }
 
 function render() {
+    $('.newgame').css({'visibility': 'hidden'});
     $('#dice1').attr('src', Imgs[dice1[2]]);
     $('#dice2').attr('src', Imgs[dice2[2]]);
     $('.rollscore').html(`${rollTextDisplay} <br> + ${rollScore}`);
