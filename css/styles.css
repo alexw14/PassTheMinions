@@ -11,6 +11,11 @@ body {
 }
 header, footer {
     background-color: lightgray;
+    width: 400px;
+}
+.top-container {
+    display: flex;
+    justify-content: center;
 }
 .hidden {
     position: absolute;
@@ -36,33 +41,31 @@ main {
 .left-container, .right-container {
     color: white;
     width: 200px;
+    font-size: 30px;
 }
 .left-container {
-    background-color: firebrick;
+    background-color: darkcyan;
 }
 .right-container {
-    background-color: dodgerblue;
+    background-color: slateblue;
 }
 .player1, .player2 {
     margin-top: 30px;
+}
+.player1-container {
+    height: 300px;
 }
 .dice {
     margin-top: 100px;
     margin-bottom: 40px;
 }
-/* .value {
-    display: inline-block;
-    padding: 0 20px;
-    font-size: 10px;
-} */
 .score {
-    margin-top: 150px;
+    margin-top: 50px;
 }
 .bank {
     margin-top: 40px;
 }
 .newgame {
-    /* display: none; */
     visibility: hidden;
 }
 .roll, .bank, .newgame {
@@ -89,7 +92,7 @@ button:active, .bank:active {
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
-img {
+#dice1, #dice2 {
     width: 100px;
     height: 100px;
     padding: 10px;
