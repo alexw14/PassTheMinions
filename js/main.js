@@ -4,10 +4,7 @@ const imgs = new Array();
 // app variables
 var dice1;
 var dice2;
-var score1;
-var score2;
-var score3;
-var score4;
+var playerScore;
 var rollScore;
 var rollTextDisplay;
 var currentRoundScore = 0;
@@ -75,10 +72,7 @@ function stopRotate() {
 function init() {
     turn = 0;
     numPlayers = 3;
-    score1 = 0;
-    score2 = 0;
-    score3 = 0;
-    score4 = 0;
+    playerScore = [0, 0, 0, 0];
     rollScore = 0;
     rollTextDisplay = '';
     currentRoundScore = 0;
@@ -167,29 +161,30 @@ function scoreUpdate() {
 
 function bank() {
     switch (turn % numPlayers) {
-        case 0: score1 += currentRoundScore;
+        case 0: playerScore[0] += currentRoundScore;
             break;
-        case 1: score2 += currentRoundScore;
+        case 1: playerScore[1] += currentRoundScore;
             break;
-        case 2: score3 += currentRoundScore;
+        case 2: playerScore[2] += currentRoundScore;
             break;
-        case 3: score4 += currentRoundScore;
+        case 3: playerScore[3] += currentRoundScore;
+            break;
     }
-    // turn % 2 !== 0 ? score1 += currentRoundScore : score2 += currentRoundScore;
     turn++;
     currentRoundScore = 0;
     render();
 }
 
 function turnUpdate() {
-    if (score1 >= 100 || score2 >= 100) {
-        $('button.bank1').prop('disabled', true);
-        $('button.bank2').prop('disabled', true);
-        $('button.bank3').prop('disabled', true);
-        $('button.bank4').prop('disabled', true);
-        return;
-    }
-
+    playerScore.forEach(function(elem){
+        if (elem >= 100) {
+            $('button.bank1').prop('disabled', true);
+            $('button.bank2').prop('disabled', true);
+            $('button.bank3').prop('disabled', true);
+            $('button.bank4').prop('disabled', true);
+            return; 
+        }
+    });
     switch (turn % numPlayers) {
         case 0: $('.player1-container').css({ 'opacity': '1' });
             $('button.bank1').prop('disabled', false);
@@ -228,37 +223,15 @@ function turnUpdate() {
             $('button.bank4').prop('disabled', false);
             break;
     }
-    // if (turn % 2 !== 0) {
-    //     $('.right-container').css({ 'opacity': '0.5' });
-    //     $('button.bank2').prop('disabled', true);
-    //     $('.left-container').css({ 'opacity': '1' });
-    //     $('button.bank1').prop('disabled', false);
-    // } else {
-    //     $('.right-container').css({ 'opacity': '1' });
-    //     $('button.bank2').prop('disabled', false);
-    //     $('.left-container').css({ 'opacity': '0.5' });
-    //     $('button.bank1').prop('disabled', true);
-    // }
 }
 
 function checkWinner() {
-    if (score1 >= 100) {
-        $('.display').html(`Player 1 Wins!`);
-        $('.newgame').css({ 'visibility': 'visible' });
-
-    }
-    if (score2 >= 100) {
-        $('.display').html(`Player 2 Wins!`);
-        $('.newgame').css({ 'visibility': 'visible' });
-    }
-    if (score3 >= 100) {
-        $('.display').html(`Player 3 Wins!`);
-        $('.newgame').css({ 'visibility': 'visible' });
-    }
-    if (score4 >= 100) {
-        $('.display').html(`Player 4 Wins!`);
-        $('.newgame').css({ 'visibility': 'visible' });
-    }
+    playerScore.forEach(function(elem, idx) {
+        if (elem >= 100) {
+            $('.display').html(`Player ${idx} Wins!`)
+            $('.newgame').css({ 'visibility': 'visible'});
+        }
+    });
 }
 
 function render() {
@@ -277,14 +250,13 @@ function render() {
             case 3: $('.display').html(`Player 4's turn!`);
                 break;
         }
-        // turn % 2 !== 0 ? $('.display').html(`Player 1's turn!`) : $('.display').html(`Player 2's turn!`);
     } else {
         $('.display').html(`${currentRoundScore}`);
     }
-    $('.score1').html(`Points: ${score1}`);
-    $('.score2').html(`Points: ${score2}`);
-    $('.score3').html(`Points: ${score3}`);
-    $('.score4').html(`Points: ${score4}`);
+    $('.score1').html(`Points: ${playerScore[0]}`);
+    $('.score2').html(`Points: ${playerScore[1]}`);
+    $('.score3').html(`Points: ${playerScore[2]}`);
+    $('.score4').html(`Points: ${playerScore[3]}`);
     checkWinner();
     turnUpdate();
 }
