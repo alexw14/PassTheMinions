@@ -42,7 +42,7 @@ $(window).on('keyup', function (e) {
 });
 $('.bank').on('click', bank);
 $(window).on('keyup', function (e) {
-    if (e.which === 66) {
+    if (e.keyCode === 66) {
         bank();
     }
 });
@@ -68,7 +68,6 @@ function stopRotate() {
         '-webkit-animation-timing-function': 'ease-out'
     });
 }
-
 
 function init() {
     turn = 1;

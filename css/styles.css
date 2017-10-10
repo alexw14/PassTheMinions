@@ -53,9 +53,9 @@ main {
     background-color: slateblue;
 }
 .player1, .player2 {
-    margin-top: 30px;
+    margin-top: 10px;
 }
-.player1-container {
+.player1-container, .player2-container, .player3-container, .player4-container {
     height: 300px;
 }
 .dice {
@@ -63,15 +63,12 @@ main {
     margin-bottom: 40px;
 }
 .score {
-    margin-top: 50px;
-}
-.bank {
-    margin-top: 40px;
+    margin-top: 0px;
 }
 .newgame {
     visibility: hidden;
 }
-.roll, .bank, .newgame {
+button {
     padding: 15px 25px;
     font-size: 24px;
     cursor: pointer;
@@ -85,13 +82,17 @@ main {
     box-shadow: 0 9px #999;
     text-transform: uppercase;
 }
+.bank {
+    margin-top: 10px;
+    font-size: 12px;
+}
 .rollscore {
     font-size: 20px;
 }
-button:hover, .bank:hover {
+button:hover {
     background-color: #3e8e41
 }
-button:active, .bank:active {
+button:active {
     background-color: #3e8e41;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
