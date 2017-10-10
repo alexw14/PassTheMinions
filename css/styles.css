@@ -8,6 +8,7 @@ body {
     text-transform: uppercase;
     background-image: url("../images/beachbackground.jpg");
     background-size: cover;
+    background-repeat: no-repeat;
 }
 header{
     color: gold;
@@ -21,13 +22,13 @@ header{
     justify-content: center;
 }
 .hidden {
-    position: absolute;
     width: 800px;
-    height: 600px;
+    height: 700px;
     background-color: black;
-    visibility: hidden;
+    display: none;
 }
 .hidden-container {
+    position: absolute;
     display: flex;
     justify-content: center;
 }
@@ -46,14 +47,20 @@ main {
     width: 200px;
     font-size: 24px;
 }
-.left-container {
+.player1-container {
     background-color: darkcyan;
 }
-.right-container {
+.player2-container {
     background-color: slateblue;
 }
-.player1, .player2 {
-    margin-top: 10px;
+.player3-container {
+    background-color: orchid;
+}
+.player4-container {
+    background-color: yellowgreen;
+}
+.player1, .player2, .player3, .player4 {
+    padding: 15px 5px;
 }
 .player1-container, .player2-container, .player3-container, .player4-container {
     height: 300px;

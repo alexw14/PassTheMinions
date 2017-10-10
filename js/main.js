@@ -6,10 +6,13 @@ var dice1;
 var dice2;
 var score1;
 var score2;
+var score3;
+var score4;
 var rollScore;
 var rollTextDisplay;
 var currentRoundScore = 0;
 var turn;
+var numPlayers;
 
 // images
 imgs[0] = 'images/minion_rotate.png'
@@ -70,9 +73,12 @@ function stopRotate() {
 }
 
 function init() {
-    turn = 1;
+    turn = 0;
+    numPlayers = 3;
     score1 = 0;
     score2 = 0;
+    score3 = 0;
+    score4 = 0;
     rollScore = 0;
     rollTextDisplay = '';
     currentRoundScore = 0;
@@ -160,7 +166,16 @@ function scoreUpdate() {
 }
 
 function bank() {
-    turn % 2 !== 0 ? score1 += currentRoundScore : score2 += currentRoundScore;
+    switch (turn % numPlayers) {
+        case 0: score1 += currentRoundScore;
+            break;
+        case 1: score2 += currentRoundScore;
+            break;
+        case 2: score3 += currentRoundScore;
+            break;
+        case 3: score4 += currentRoundScore;
+    }
+    // turn % 2 !== 0 ? score1 += currentRoundScore : score2 += currentRoundScore;
     turn++;
     currentRoundScore = 0;
     render();
@@ -170,19 +185,60 @@ function turnUpdate() {
     if (score1 >= 100 || score2 >= 100) {
         $('button.bank1').prop('disabled', true);
         $('button.bank2').prop('disabled', true);
+        $('button.bank3').prop('disabled', true);
+        $('button.bank4').prop('disabled', true);
         return;
     }
-    if (turn % 2 !== 0) {
-        $('.right-container').css({ 'opacity': '0.5' });
-        $('button.bank2').prop('disabled', true);
-        $('.left-container').css({ 'opacity': '1' });
-        $('button.bank1').prop('disabled', false);
-    } else {
-        $('.right-container').css({ 'opacity': '1' });
-        $('button.bank2').prop('disabled', false);
-        $('.left-container').css({ 'opacity': '0.5' });
-        $('button.bank1').prop('disabled', true);
+
+    switch (turn % numPlayers) {
+        case 0: $('.player1-container').css({ 'opacity': '1' });
+            $('button.bank1').prop('disabled', false);
+            $('.player2-container').css({ 'opacity': '0.5' });
+            $('button.bank2').prop('disabled', true);
+            $('.player3-container').css({ 'opacity': '0.5' });
+            $('button.bank3').prop('disabled', true);
+            $('.player4-container').css({ 'opacity': '0.5' });
+            $('button.bank4').prop('disabled', true);
+            break;
+        case 1: $('.player1-container').css({ 'opacity': '0.5' });
+            $('button.bank1').prop('disabled', true);
+            $('.player2-container').css({ 'opacity': '1' });
+            $('button.bank2').prop('disabled', false);
+            $('.player3-container').css({ 'opacity': '0.5' });
+            $('button.bank3').prop('disabled', true);
+            $('.player4-container').css({ 'opacity': '0.5' });
+            $('button.bank4').prop('disabled', true);
+            break;
+        case 2: $('.player1-container').css({ 'opacity': '0.5' });
+            $('button.bank1').prop('disabled', true);
+            $('.player2-container').css({ 'opacity': '0.5' });
+            $('button.bank2').prop('disabled', true);
+            $('.player3-container').css({ 'opacity': '1' });
+            $('button.bank3').prop('disabled', false);
+            $('.player4-container').css({ 'opacity': '0.5' });
+            $('button.bank4').prop('disabled', true);
+            break;
+        case 3: $('.player1-container').css({ 'opacity': '0.5' });
+            $('button.bank1').prop('disabled', true);
+            $('.player2-container').css({ 'opacity': '0.5' });
+            $('button.bank2').prop('disabled', true);
+            $('.player3-container').css({ 'opacity': '0.5' });
+            $('button.bank3').prop('disabled', true);
+            $('.player4-container').css({ 'opacity': '1' });
+            $('button.bank4').prop('disabled', false);
+            break;
     }
+    // if (turn % 2 !== 0) {
+    //     $('.right-container').css({ 'opacity': '0.5' });
+    //     $('button.bank2').prop('disabled', true);
+    //     $('.left-container').css({ 'opacity': '1' });
+    //     $('button.bank1').prop('disabled', false);
+    // } else {
+    //     $('.right-container').css({ 'opacity': '1' });
+    //     $('button.bank2').prop('disabled', false);
+    //     $('.left-container').css({ 'opacity': '0.5' });
+    //     $('button.bank1').prop('disabled', true);
+    // }
 }
 
 function checkWinner() {
@@ -195,6 +251,14 @@ function checkWinner() {
         $('.display').html(`Player 2 Wins!`);
         $('.newgame').css({ 'visibility': 'visible' });
     }
+    if (score3 >= 100) {
+        $('.display').html(`Player 3 Wins!`);
+        $('.newgame').css({ 'visibility': 'visible' });
+    }
+    if (score4 >= 100) {
+        $('.display').html(`Player 4 Wins!`);
+        $('.newgame').css({ 'visibility': 'visible' });
+    }
 }
 
 function render() {
@@ -203,12 +267,24 @@ function render() {
     $('#dice2').attr('src', imgs[dice2[2]]);
     $('.rollscore').html(`${rollTextDisplay} <br> +${rollScore}`);
     if (currentRoundScore === 0) {
-        turn % 2 !== 0 ? $('.display').html(`Player 1's turn!`) : $('.display').html(`Player 2's turn!`);
+        switch (turn % numPlayers) {
+            case 0: $('.display').html(`Player 1's turn!`);
+                break;
+            case 1: $('.display').html(`Player 2's turn!`);
+                break;
+            case 2: $('.display').html(`Player 3's turn!`);
+                break;
+            case 3: $('.display').html(`Player 4's turn!`);
+                break;
+        }
+        // turn % 2 !== 0 ? $('.display').html(`Player 1's turn!`) : $('.display').html(`Player 2's turn!`);
     } else {
         $('.display').html(`${currentRoundScore}`);
     }
     $('.score1').html(`Points: ${score1}`);
     $('.score2').html(`Points: ${score2}`);
+    $('.score3').html(`Points: ${score3}`);
+    $('.score4').html(`Points: ${score4}`);
     checkWinner();
     turnUpdate();
 }
