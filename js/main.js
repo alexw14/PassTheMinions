@@ -121,7 +121,6 @@ function roll() {
     scoreUpdate();
     if (rollTextDisplay === 'Pass the Minions!') {
         turn++;
-        turnUpdate();
     }
     render();
 }
@@ -178,16 +177,6 @@ function bank() {
 }
 
 function turnUpdate() {
-    if (hasWinner === true) return;
-    playerScore.forEach(function(elem){
-        if (elem >= 100) {
-            $('button.bank1').prop('disabled', true);
-            $('button.bank2').prop('disabled', true);
-            $('button.bank3').prop('disabled', true);
-            $('button.bank4').prop('disabled', true);
-            return; 
-        }
-    });
     switch (turn % numPlayers) {
         case 0: $('.player1-container').css({ 'opacity': '1' });
             $('button.bank1').prop('disabled', false);
@@ -233,37 +222,33 @@ function checkWinner() {
         if (elem >= 100) {
             $('.display').html(`Player ${idx+1} Wins!`)
             $('.newgame').css({ 'visibility': 'visible'});
+            $('button.bank1').prop('disabled', true);
+            $('button.bank2').prop('disabled', true);
+            $('button.bank3').prop('disabled', true);
+            $('button.bank4').prop('disabled', true);
             hasWinner = true;
         }
     });
 }
 
 function render() {
-    if (hasWinner === true) return;
-    $('.newgame').css({ 'visibility': 'hidden' });
     $('#dice1').attr('src', imgs[dice1[2]]);
     $('#dice2').attr('src', imgs[dice2[2]]);
     $('.rollscore').html(`${rollTextDisplay} <br> +${rollScore}`);
+    if (hasWinner === true) return;
+    $('.newgame').css({ 'visibility': 'hidden' });
     if (currentRoundScore === 0) {
-        switch (turn % numPlayers) {
-            case 0: $('.display').html(`Player 1's turn!`);
-                break;
-            case 1: $('.display').html(`Player 2's turn!`);
-                break;
-            case 2: $('.display').html(`Player 3's turn!`);
-                break;
-            case 3: $('.display').html(`Player 4's turn!`);
-                break;
-        }
+        playerScore.forEach(function(elem, idx){
+            if (turn % numPlayers === idx) $(`.display`).html(`Player ${idx+1}'s turn!`);
+        });
     } else {
-        $('.display').html(`${currentRoundScore}`);
+        $(`.display`).html(`${currentRoundScore}`);
     }
-    $('.score1').html(`Points: ${playerScore[0]}`);
-    $('.score2').html(`Points: ${playerScore[1]}`);
-    $('.score3').html(`Points: ${playerScore[2]}`);
-    $('.score4').html(`Points: ${playerScore[3]}`);
+    playerScore.forEach(function(elem, idx){
+        $(`.score${idx+1}`).html(`Points: ${elem}`);
+    });
     checkWinner();
-    turnUpdate();
+    if (hasWinner === false) turnUpdate();
 }
 
 init();
