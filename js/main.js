@@ -10,6 +10,7 @@ var rollTextDisplay;
 var currentRoundScore = 0;
 var turn;
 var numPlayers;
+var hasWinner;
 
 // images
 imgs[0] = 'images/minion_rotate.png'
@@ -29,19 +30,19 @@ $('.roll').on('mouseup', function () {
     stopRotate();
     roll();
 });
-$(window).on('keydown', function (e) {
+$(document).on('keydown', function (e) {
     if (e.keyCode === 32) {
         rotate();
     }
 });
-$(window).on('keyup', function (e) {
+$(document).on('keyup', function (e) {
     if (e.keyCode === 32) {
         stopRotate();
         roll();
     }
 });
 $('.bank').on('click', bank);
-$(window).on('keyup', function (e) {
+$(document).on('keyup', function (e) {
     if (e.keyCode === 66) {
         bank();
     }
@@ -71,7 +72,8 @@ function stopRotate() {
 
 function init() {
     turn = 0;
-    numPlayers = 3;
+    numPlayers = 4;
+    hasWinner = false;
     playerScore = [0, 0, 0, 0];
     rollScore = 0;
     rollTextDisplay = '';
@@ -176,6 +178,7 @@ function bank() {
 }
 
 function turnUpdate() {
+    if (hasWinner === true) return;
     playerScore.forEach(function(elem){
         if (elem >= 100) {
             $('button.bank1').prop('disabled', true);
@@ -228,13 +231,15 @@ function turnUpdate() {
 function checkWinner() {
     playerScore.forEach(function(elem, idx) {
         if (elem >= 100) {
-            $('.display').html(`Player ${idx} Wins!`)
+            $('.display').html(`Player ${idx+1} Wins!`)
             $('.newgame').css({ 'visibility': 'visible'});
+            hasWinner = true;
         }
     });
 }
 
 function render() {
+    if (hasWinner === true) return;
     $('.newgame').css({ 'visibility': 'hidden' });
     $('#dice1').attr('src', imgs[dice1[2]]);
     $('#dice2').attr('src', imgs[dice2[2]]);
