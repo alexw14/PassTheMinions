@@ -23,10 +23,29 @@ imgs[6] = 'images/Pos6_banana.png'
 // cached elements
 
 // event listeners
-$('.roll').on('click', roll);
+// $('.roll').on('click', roll);
 $('.roll').on('mousedown', rotate);
-$('.roll').on('mouseup', stopRotate);
+$('.roll').on('mouseup', function () {
+    stopRotate();
+    roll();
+});
+$(window).on('keydown', function (e) {
+    if (e.keyCode === 32) {
+        rotate();
+    }
+});
+$(window).on('keyup', function (e) {
+    if (e.keyCode === 32) {
+        stopRotate();
+        roll();
+    }
+});
 $('.bank').on('click', bank);
+$(window).on('keyup', function (e) {
+    if (e.which === 66) {
+        bank();
+    }
+});
 $('.newgame').on('click', init);
 
 // functions
@@ -39,7 +58,7 @@ function rotate() {
         '-webkit-animation-name': 'rotate',
         '-webkit-animation-duration': '0.3s',
         '-webkit-animation-iteration-count': 'infinite',
-        '-webkit-animation-timing-function': 'linear',
+        '-webkit-animation-timing-function': 'linear'
     });
 }
 // stop rotate the images of pig when mouse is released
@@ -49,6 +68,7 @@ function stopRotate() {
         '-webkit-animation-timing-function': 'ease-out'
     });
 }
+
 
 function init() {
     turn = 1;
@@ -169,17 +189,17 @@ function turnUpdate() {
 function checkWinner() {
     if (score1 >= 100) {
         $('.display').html(`Player 1 Wins!`);
-        $('.newgame').css({'visibility': 'visible'});
+        $('.newgame').css({ 'visibility': 'visible' });
 
     }
     if (score2 >= 100) {
         $('.display').html(`Player 2 Wins!`);
-        $('.newgame').css({'visibility': 'visible'});
+        $('.newgame').css({ 'visibility': 'visible' });
     }
 }
 
 function render() {
-    $('.newgame').css({'visibility': 'hidden'});
+    $('.newgame').css({ 'visibility': 'hidden' });
     $('#dice1').attr('src', imgs[dice1[2]]);
     $('#dice2').attr('src', imgs[dice2[2]]);
     $('.rollscore').html(`${rollTextDisplay} <br> +${rollScore}`);
