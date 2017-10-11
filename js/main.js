@@ -39,13 +39,24 @@ $(document).on('keyup', function (e) {
     }
 });
 $('.newgame').on('click', init);
-$('.numPlayers').on('click', function() {
-    $(`.hidden`).show();
+$('.about').on('click', function() {
+    $(`.hidden1`).show();
 });
-
-$(`.hidden`).on('click', 'button', function (num) {
+$(`.hidden1`).on('click', 'button', function() {
+    $(`.hidden1`).hide();
+})
+$('.how').on('click', function() {
+    $(`.hidden2`).show();
+});
+$(`.hidden2`).on('click', 'button', function() {
+    $(`.hidden2`).hide();
+});
+$('.numPlayers').on('click', function() {
+    $(`.hidden3`).show();
+});
+$(`.hidden3`).on('click', 'button', function (num) {
     numPlayers = (parseInt(num.target.innerHTML));
-    $('.hidden').hide();
+    $('.hidden3').hide();
     init();
 });
 

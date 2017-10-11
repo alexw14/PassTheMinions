@@ -34,9 +34,16 @@ header{
     display: flex;
     justify-content: center;
 }
-.hidden > button {
-    margin: 0 auto;
+.hidden1 {
+    display: none;
+}
+.hidden2 {
+    display: none;
+}
+.hidden3 > button {
+    margin: 50px auto;
     display: block;
+    font-size: 50px;
 }
 .container {
     display: flex;
