@@ -2,29 +2,20 @@
 const imgs = new Array();
 
 // app variables
-var dice1;
-var dice2;
-var playerScore;
-var rollScore;
-var rollTextDisplay;
-var currentRoundScore;
-var turn;
-var numPlayers;
-var hasWinner;
+var dice1, dice2, playerScore, rollScore, rollTextDisplay, currentRoundScore, turn, numPlayers, hasWinner;
 
 // images
-imgs[0] = 'images/minion_rotate.png'
-imgs[1] = 'images/Pos1_tongue.png'
-imgs[2] = 'images/Pos2_uninterested.png'
-imgs[3] = 'images/Pos3_cupcake.png'
-imgs[4] = 'images/Pos4_happy.png'
-imgs[5] = 'images/Pos5_dancing.png'
-imgs[6] = 'images/Pos6_banana.png'
+imgs[0] = 'images/minion_rotate.png';
+imgs[1] = 'images/Pos1_tongue.png';
+imgs[2] = 'images/Pos2_uninterested.png';
+imgs[3] = 'images/Pos3_cupcake.png';
+imgs[4] = 'images/Pos4_happy.png';
+imgs[5] = 'images/Pos5_dancing.png';
+imgs[6] = 'images/Pos6_banana.png';
 
 // cached elements
 
 // event listeners
-// $('.roll').on('click', roll);
 $('.roll').on('mousedown', rotate);
 $('.roll').on('mouseup', function () {
     stopRotate();
@@ -48,6 +39,15 @@ $(document).on('keyup', function (e) {
     }
 });
 $('.newgame').on('click', init);
+$('.numPlayers').on('click', function() {
+    $(`.hidden`).show();
+});
+
+$(`.hidden`).on('click', 'button', function (num) {
+    numPlayers = (parseInt(num.target.innerHTML));
+    $('.hidden').hide();
+    init();
+});
 
 // functions
 
@@ -72,7 +72,6 @@ function stopRotate() {
 
 function init() {
     turn = 0;
-    numPlayers = 4;
     hasWinner = false;
     playerScore = new Array(numPlayers);
     playerScore.fill(0);
@@ -159,21 +158,11 @@ function scoreUpdate() {
 }
 
 function bank() {
+    if (hasWinner === true) return;
     playerScore[turn] += currentRoundScore;
     currentRoundScore = 0;
     render();
 }
-
-function turnUpdate() {
-    if (currentRoundScore === 0) {
-        turn = (turn === numPlayers - 1) ? 0 : turn + 1;
-    }
-    $(`.box`).css({'opacity': '0.5'});
-    $(`button.bank`).prop(`disabled`, true);
-    $(`.p${turn+1}`).css({ 'opacity': '1'});
-    $(`button.bank${turn+1}`).prop(`disabled`, false);
-}
-
 function checkWinner() {
     if (playerScore[turn] >= 100) {
         $(`.display`).html(`Player ${turn + 1} Wins!`)
@@ -182,7 +171,15 @@ function checkWinner() {
         hasWinner = true;
     }
 }
-
+function turnUpdate() {
+    if (currentRoundScore === 0) {
+        turn = (turn === numPlayers - 1) ? 0 : turn + 1;
+    }
+    $(`.box`).css({ 'opacity': '0.6' });
+    $(`button.bank`).prop(`disabled`, true);
+    $(`.p${turn + 1}`).css({ 'opacity': '1' });
+    $(`button.bank${turn + 1}`).prop(`disabled`, false);
+}
 function render() {
     $(`.score${turn + 1}`).html(`Points: ${playerScore[turn]}`);
     checkWinner();
