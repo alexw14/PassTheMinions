@@ -78,7 +78,7 @@ function init() {
     playerScore.fill(0);
     rollScore = 0;
     rollTextDisplay = '';
-    currentRoundScore = 0;
+    currentRoundScore = null;
     dice1 = ['', 0, 0];
     dice2 = ['', 0, 0];
     render();
@@ -120,9 +120,6 @@ function roll() {
     dice2 = calc();        // roll dice 2
     checkDice();
     scoreUpdate();
-    if (rollTextDisplay === 'Pass the Minions!') {
-        turn++;
-    }
     render();
 }
 
@@ -163,50 +160,54 @@ function scoreUpdate() {
 
 function bank() {
     playerScore[turn] += currentRoundScore;
-    turn = (turn === numPlayers - 1) ? 0 : turn + 1;
     currentRoundScore = 0;
     render();
 }
 
 function turnUpdate() {
-    switch (turn % numPlayers) {
-        case 0: $('.player1-container').css({ 'opacity': '1' });
-            $('button.bank1').prop('disabled', false);
-            $('.player2-container').css({ 'opacity': '0.5' });
-            $('button.bank2').prop('disabled', true);
-            $('.player3-container').css({ 'opacity': '0.5' });
-            $('button.bank3').prop('disabled', true);
-            $('.player4-container').css({ 'opacity': '0.5' });
-            $('button.bank4').prop('disabled', true);
-            break;
-        case 1: $('.player1-container').css({ 'opacity': '0.5' });
-            $('button.bank1').prop('disabled', true);
-            $('.player2-container').css({ 'opacity': '1' });
-            $('button.bank2').prop('disabled', false);
-            $('.player3-container').css({ 'opacity': '0.5' });
-            $('button.bank3').prop('disabled', true);
-            $('.player4-container').css({ 'opacity': '0.5' });
-            $('button.bank4').prop('disabled', true);
-            break;
-        case 2: $('.player1-container').css({ 'opacity': '0.5' });
-            $('button.bank1').prop('disabled', true);
-            $('.player2-container').css({ 'opacity': '0.5' });
-            $('button.bank2').prop('disabled', true);
-            $('.player3-container').css({ 'opacity': '1' });
-            $('button.bank3').prop('disabled', false);
-            $('.player4-container').css({ 'opacity': '0.5' });
-            $('button.bank4').prop('disabled', true);
-            break;
-        case 3: $('.player1-container').css({ 'opacity': '0.5' });
-            $('button.bank1').prop('disabled', true);
-            $('.player2-container').css({ 'opacity': '0.5' });
-            $('button.bank2').prop('disabled', true);
-            $('.player3-container').css({ 'opacity': '0.5' });
-            $('button.bank3').prop('disabled', true);
-            $('.player4-container').css({ 'opacity': '1' });
-            $('button.bank4').prop('disabled', false);
-            break;
+    if (currentRoundScore === 0) {
+ 
+        turn = (turn === numPlayers - 1) ? 0 : turn + 1;
+        
     }
+    // switch (turn % numPlayers) {
+    //     case 0: $('.player1-container').css({ 'opacity': '1' });
+    //         $('button.bank1').prop('disabled', false);
+    //         $('.player2-container').css({ 'opacity': '0.5' });
+    //         $('button.bank2').prop('disabled', true);
+    //         $('.player3-container').css({ 'opacity': '0.5' });
+    //         $('button.bank3').prop('disabled', true);
+    //         $('.player4-container').css({ 'opacity': '0.5' });
+    //         $('button.bank4').prop('disabled', true);
+    //         break;
+    //     case 1: $('.player1-container').css({ 'opacity': '0.5' });
+    //         $('button.bank1').prop('disabled', true);
+    //         $('.player2-container').css({ 'opacity': '1' });
+    //         $('button.bank2').prop('disabled', false);
+    //         $('.player3-container').css({ 'opacity': '0.5' });
+    //         $('button.bank3').prop('disabled', true);
+    //         $('.player4-container').css({ 'opacity': '0.5' });
+    //         $('button.bank4').prop('disabled', true);
+    //         break;
+    //     case 2: $('.player1-container').css({ 'opacity': '0.5' });
+    //         $('button.bank1').prop('disabled', true);
+    //         $('.player2-container').css({ 'opacity': '0.5' });
+    //         $('button.bank2').prop('disabled', true);
+    //         $('.player3-container').css({ 'opacity': '1' });
+    //         $('button.bank3').prop('disabled', false);
+    //         $('.player4-container').css({ 'opacity': '0.5' });
+    //         $('button.bank4').prop('disabled', true);
+    //         break;
+    //     case 3: $('.player1-container').css({ 'opacity': '0.5' });
+    //         $('button.bank1').prop('disabled', true);
+    //         $('.player2-container').css({ 'opacity': '0.5' });
+    //         $('button.bank2').prop('disabled', true);
+    //         $('.player3-container').css({ 'opacity': '0.5' });
+    //         $('button.bank3').prop('disabled', true);
+    //         $('.player4-container').css({ 'opacity': '1' });
+    //         $('button.bank4').prop('disabled', false);
+    //         break;
+    // }
 }
 
 function checkWinner() {
@@ -215,7 +216,7 @@ function checkWinner() {
             $('.display').html(`Player ${idx + 1} Wins!`)
             $('.newgame').css({ 'visibility': 'visible' });
             playerScore.forEach(function (elem, idx) {
-                $(`button.bank${idx+1}`).prop(`disabled`, true);
+                $(`button.bank${idx + 1}`).prop(`disabled`, true);
             });
             hasWinner = true;
         }
@@ -228,18 +229,11 @@ function render() {
     $('.rollscore').html(`${rollTextDisplay} <br> +${rollScore}`);
     if (hasWinner === true) return;
     $('.newgame').css({ 'visibility': 'hidden' });
-    if (currentRoundScore === 0) {
-        playerScore.forEach(function (elem, idx) {
-            if (turn % numPlayers === idx) $(`.display`).html(`Player ${idx + 1}'s turn!`);
-        });
-    } else {
-        $(`.display`).html(`${currentRoundScore}`);
-    }
-    playerScore.forEach(function (elem, idx) {
-        $(`.score${idx + 1}`).html(`Points: ${elem}`);
-    });
+    $(`.score${turn+1}`).html(`Points: ${playerScore[turn]}`);
     checkWinner();
     if (hasWinner === false) turnUpdate();
+    currentRoundScore === 0 ? $(`.display`).html(`Player ${turn+1}'s turn!`) : $(`.display`).html(`${currentRoundScore}`);
+    if (currentRoundScore === null) $(`.display`).html(`Let's Play!`);
 }
 
 init();
