@@ -47,22 +47,22 @@ main {
     width: 200px;
     font-size: 24px;
 }
-.player1-container {
+.p1 {
     background-color: darkcyan;
 }
-.player2-container {
+.p2 {
     background-color: slateblue;
 }
-.player3-container {
+.p3 {
     background-color: orchid;
 }
-.player4-container {
+.p4 {
     background-color: yellowgreen;
 }
 .player1, .player2, .player3, .player4 {
     padding: 15px 5px;
 }
-.player1-container, .player2-container, .player3-container, .player4-container {
+.p1, .p2, .p3, .p4 {
     height: 300px;
 }
 .dice {

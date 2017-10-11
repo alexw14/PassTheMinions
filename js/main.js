@@ -165,58 +165,26 @@ function bank() {
 }
 
 function turnUpdate() {
-    if (currentRoundScore === 0) turn = (turn === numPlayers - 1) ? 0 : turn + 1;
-    // switch (turn % numPlayers) {
-    //     case 0: $('.player1-container').css({ 'opacity': '1' });
-    //         $('button.bank1').prop('disabled', false);
-    //         $('.player2-container').css({ 'opacity': '0.5' });
-    //         $('button.bank2').prop('disabled', true);
-    //         $('.player3-container').css({ 'opacity': '0.5' });
-    //         $('button.bank3').prop('disabled', true);
-    //         $('.player4-container').css({ 'opacity': '0.5' });
-    //         $('button.bank4').prop('disabled', true);
-    //         break;
-    //     case 1: $('.player1-container').css({ 'opacity': '0.5' });
-    //         $('button.bank1').prop('disabled', true);
-    //         $('.player2-container').css({ 'opacity': '1' });
-    //         $('button.bank2').prop('disabled', false);
-    //         $('.player3-container').css({ 'opacity': '0.5' });
-    //         $('button.bank3').prop('disabled', true);
-    //         $('.player4-container').css({ 'opacity': '0.5' });
-    //         $('button.bank4').prop('disabled', true);
-    //         break;
-    //     case 2: $('.player1-container').css({ 'opacity': '0.5' });
-    //         $('button.bank1').prop('disabled', true);
-    //         $('.player2-container').css({ 'opacity': '0.5' });
-    //         $('button.bank2').prop('disabled', true);
-    //         $('.player3-container').css({ 'opacity': '1' });
-    //         $('button.bank3').prop('disabled', false);
-    //         $('.player4-container').css({ 'opacity': '0.5' });
-    //         $('button.bank4').prop('disabled', true);
-    //         break;
-    //     case 3: $('.player1-container').css({ 'opacity': '0.5' });
-    //         $('button.bank1').prop('disabled', true);
-    //         $('.player2-container').css({ 'opacity': '0.5' });
-    //         $('button.bank2').prop('disabled', true);
-    //         $('.player3-container').css({ 'opacity': '0.5' });
-    //         $('button.bank3').prop('disabled', true);
-    //         $('.player4-container').css({ 'opacity': '1' });
-    //         $('button.bank4').prop('disabled', false);
-    //         break;
-    // }
+    if (currentRoundScore === 0) {
+        turn = (turn === numPlayers - 1) ? 0 : turn + 1;
+    }
+    $(`.box`).css({'opacity': '0.5'});
+    $(`button.bank`).prop(`disabled`, true);
+    $(`.p${turn+1}`).css({ 'opacity': '1'});
+    $(`button.bank${turn+1}`).prop(`disabled`, false);
 }
 
 function checkWinner() {
     if (playerScore[turn] >= 100) {
-        $(`.display`).html(`Player ${turn+1} Wins!`)
-        $(`.newgame`).css({'visibility': 'visible'});
+        $(`.display`).html(`Player ${turn + 1} Wins!`)
+        $(`.newgame`).css({ 'visibility': 'visible' });
         $(`button.bank`).prop(`disabled`, true);
         hasWinner = true;
     }
 }
 
 function render() {
-    $(`.score${turn+1}`).html(`Points: ${playerScore[turn]}`);
+    $(`.score${turn + 1}`).html(`Points: ${playerScore[turn]}`);
     checkWinner();
     $('#dice1').attr('src', imgs[dice1[2]]);
     $('#dice2').attr('src', imgs[dice2[2]]);
@@ -224,7 +192,7 @@ function render() {
     if (hasWinner === true) return;
     $('.newgame').css({ 'visibility': 'hidden' });
     if (hasWinner === false) turnUpdate();
-    currentRoundScore === 0 ? $(`.display`).html(`Player ${turn+1}'s turn!`) : $(`.display`).html(`${currentRoundScore}`);
+    currentRoundScore === 0 ? $(`.display`).html(`Player ${turn + 1}'s turn!`) : $(`.display`).html(`${currentRoundScore}`);
     if (currentRoundScore === null) $(`.display`).html(`Let's Play!`);
 }
 
