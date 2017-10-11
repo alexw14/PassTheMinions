@@ -165,11 +165,7 @@ function bank() {
 }
 
 function turnUpdate() {
-    if (currentRoundScore === 0) {
- 
-        turn = (turn === numPlayers - 1) ? 0 : turn + 1;
-        
-    }
+    if (currentRoundScore === 0) turn = (turn === numPlayers - 1) ? 0 : turn + 1;
     // switch (turn % numPlayers) {
     //     case 0: $('.player1-container').css({ 'opacity': '1' });
     //         $('button.bank1').prop('disabled', false);
@@ -211,26 +207,22 @@ function turnUpdate() {
 }
 
 function checkWinner() {
-    playerScore.forEach(function (elem, idx) {
-        if (elem >= 100) {
-            $('.display').html(`Player ${idx + 1} Wins!`)
-            $('.newgame').css({ 'visibility': 'visible' });
-            playerScore.forEach(function (elem, idx) {
-                $(`button.bank${idx + 1}`).prop(`disabled`, true);
-            });
-            hasWinner = true;
-        }
-    });
+    if (playerScore[turn] >= 100) {
+        $(`.display`).html(`Player ${turn+1} Wins!`)
+        $(`.newgame`).css({'visibility': 'visible'});
+        $(`button.bank`).prop(`disabled`, true);
+        hasWinner = true;
+    }
 }
 
 function render() {
+    $(`.score${turn+1}`).html(`Points: ${playerScore[turn]}`);
+    checkWinner();
     $('#dice1').attr('src', imgs[dice1[2]]);
     $('#dice2').attr('src', imgs[dice2[2]]);
     $('.rollscore').html(`${rollTextDisplay} <br> +${rollScore}`);
     if (hasWinner === true) return;
     $('.newgame').css({ 'visibility': 'hidden' });
-    $(`.score${turn+1}`).html(`Points: ${playerScore[turn]}`);
-    checkWinner();
     if (hasWinner === false) turnUpdate();
     currentRoundScore === 0 ? $(`.display`).html(`Player ${turn+1}'s turn!`) : $(`.display`).html(`${currentRoundScore}`);
     if (currentRoundScore === null) $(`.display`).html(`Let's Play!`);
