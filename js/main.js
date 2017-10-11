@@ -7,7 +7,7 @@ var dice2;
 var playerScore;
 var rollScore;
 var rollTextDisplay;
-var currentRoundScore = 0;
+var currentRoundScore;
 var turn;
 var numPlayers;
 var hasWinner;
@@ -74,7 +74,8 @@ function init() {
     turn = 0;
     numPlayers = 4;
     hasWinner = false;
-    playerScore = [0, 0, 0, 0];
+    playerScore = new Array(numPlayers);
+    playerScore.fill(0);
     rollScore = 0;
     rollTextDisplay = '';
     currentRoundScore = 0;
@@ -161,17 +162,8 @@ function scoreUpdate() {
 }
 
 function bank() {
-    switch (turn % numPlayers) {
-        case 0: playerScore[0] += currentRoundScore;
-            break;
-        case 1: playerScore[1] += currentRoundScore;
-            break;
-        case 2: playerScore[2] += currentRoundScore;
-            break;
-        case 3: playerScore[3] += currentRoundScore;
-            break;
-    }
-    turn++;
+    playerScore[turn] += currentRoundScore;
+    turn = (turn === numPlayers - 1) ? 0 : turn + 1;
     currentRoundScore = 0;
     render();
 }
@@ -218,14 +210,13 @@ function turnUpdate() {
 }
 
 function checkWinner() {
-    playerScore.forEach(function(elem, idx) {
+    playerScore.forEach(function (elem, idx) {
         if (elem >= 100) {
-            $('.display').html(`Player ${idx+1} Wins!`)
-            $('.newgame').css({ 'visibility': 'visible'});
-            $('button.bank1').prop('disabled', true);
-            $('button.bank2').prop('disabled', true);
-            $('button.bank3').prop('disabled', true);
-            $('button.bank4').prop('disabled', true);
+            $('.display').html(`Player ${idx + 1} Wins!`)
+            $('.newgame').css({ 'visibility': 'visible' });
+            playerScore.forEach(function (elem, idx) {
+                $(`button.bank${idx+1}`).prop(`disabled`, true);
+            });
             hasWinner = true;
         }
     });
@@ -238,14 +229,14 @@ function render() {
     if (hasWinner === true) return;
     $('.newgame').css({ 'visibility': 'hidden' });
     if (currentRoundScore === 0) {
-        playerScore.forEach(function(elem, idx){
-            if (turn % numPlayers === idx) $(`.display`).html(`Player ${idx+1}'s turn!`);
+        playerScore.forEach(function (elem, idx) {
+            if (turn % numPlayers === idx) $(`.display`).html(`Player ${idx + 1}'s turn!`);
         });
     } else {
         $(`.display`).html(`${currentRoundScore}`);
     }
-    playerScore.forEach(function(elem, idx){
-        $(`.score${idx+1}`).html(`Points: ${elem}`);
+    playerScore.forEach(function (elem, idx) {
+        $(`.score${idx + 1}`).html(`Points: ${elem}`);
     });
     checkWinner();
     if (hasWinner === false) turnUpdate();
