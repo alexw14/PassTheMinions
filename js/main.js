@@ -85,7 +85,7 @@ function init() {
     turn = 0;
     hasWinner = false;
     playerScore = new Array(numPlayers);
-    playerScore.fill(99);
+    playerScore.fill(0);
     rollScore = 0;
     rollTextDisplay = '';
     currentRoundScore = null;
@@ -186,7 +186,7 @@ function checkWinner() {
 }
 function showGif() {
     $(`#gif`).fadeIn(1000);
-    $(`#gif`).delay(3000).fadeOut(1000);
+    $(`#gif`).delay(2000).fadeOut(1000);
 }
 function turnUpdate() {
     if (currentRoundScore === 0) {

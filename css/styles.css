@@ -7,9 +7,6 @@ body {
     font-family: "Maven Pro", sans-serif;
     text-transform: uppercase;
     background-image: radial-gradient(yellow, rgb(253, 135, 50));
-    /* background-image: url("../images/background3.jpg");
-    background-size: cover;
-    background-repeat: no-repeat; */
 }
 header{
     color: gold;
@@ -46,6 +43,16 @@ header{
     display: inline-block;
     font-size: 50px;
 }
+.hidden3 > h1 {
+    font-size: 40px;
+}
+h1 {
+    font-size: 30px;
+}
+.hidden > p {
+    text-transform: none;
+    font-size: 18px;
+}
 .container {
     display: flex;
     justify-content: center;
@@ -73,11 +80,11 @@ main {
 .p4 {
     background-color: yellowgreen;
 }
-.player1, .player2, .player3, .player4 {
-    padding: 15px 5px;
-}
 .p1, .p2, .p3, .p4 {
     height: 300px;
+}
+.player1, .player2, .player3, .player4 {
+    padding: 15px 5px;
 }
 .dice {
     margin: 30px 0;
@@ -96,7 +103,6 @@ button {
     text-decoration: none;
     outline: none;
     color: #fff;
-    /* background-color: #4CAF50; */
     background-color: #D3B002;
     border: none;
     border-radius: 15px;
@@ -115,10 +121,10 @@ button {
     font-size: 30px;
 }
 button:hover {
-    background-color: #3e8e41
+    background-color: #AA8B00;
 }
 button:active {
-    background-color: #3e8e41;
+    background-color: #AA8B00;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
@@ -159,15 +165,6 @@ button.x {
     margin-top: 390px;
     display: none;
 }
-/* Properties that make the image rotate */
-/* img {
-    -webkit-animation-name: rotate; 
-    -webkit-animation-duration: 0.5s; 
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
-}
- */
-
 @-webkit-keyframes rotate {
     from {
       -webkit-transform: rotate(0deg);
