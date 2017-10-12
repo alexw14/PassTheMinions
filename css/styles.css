@@ -152,10 +152,11 @@ button.x {
     background-image: url('../images/giphy.gif');
     background-size: contain;
     background-repeat: no-repeat;
-    z-index: 2;
+    z-index: 1;
     width: 400px;
     height: 200px;
     position: absolute;
+    margin-top: 390px;
     display: none;
 }
 /* Properties that make the image rotate */

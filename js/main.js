@@ -85,7 +85,7 @@ function init() {
     turn = 0;
     hasWinner = false;
     playerScore = new Array(numPlayers);
-    playerScore.fill(0);
+    playerScore.fill(99);
     rollScore = 0;
     rollTextDisplay = '';
     currentRoundScore = null;
@@ -175,14 +175,18 @@ function bank() {
     render();
 }
 function checkWinner() {
+    if (hasWinner === true) return;
     if (playerScore[turn] >= 100) {
         $(`.display`).html(`Minion ${turn + 1} Wins!`)
         $(`.newgame`).css({ 'visibility': 'visible' });
         $(`button.bank`).prop(`disabled`, true);
-        $(`#gif`).delay(2000).fadeIn(500);
-        $(`#gif`).delay(2000).fadeOut(1000);
+        showGif();
         hasWinner = true;
     }
+}
+function showGif() {
+    $(`#gif`).fadeIn(1000);
+    $(`#gif`).delay(3000).fadeOut(1000);
 }
 function turnUpdate() {
     if (currentRoundScore === 0) {
