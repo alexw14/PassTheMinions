@@ -32,11 +32,10 @@ header{
     display: flex;
     justify-content: center;
 }
-.hidden1 {
+.hidden1, .hidden2, .hidden3 {
     display: none;
 }
 .hidden2 {
-    display: none;
     overflow: scroll;
 }
 .hidden3 > button {
@@ -56,22 +55,44 @@ h2 {
     margin: 10px 50px -10px;
     text-decoration: underline;
 }
-.hidden > p, .scoring > p {
+.single > div, .double > div {
+    margin-top: 10px;
+    height: 100px;
+}
+.hidden > p, .single > div, .double > div {
     padding: 10px 50px;
     text-transform: none;
     font-size: 18px;
     text-align: justify;
 }
-.scoring > p > img {
-    margin-right: 20px;
+.single > div, .double > div{
+    padding: 0 30px;
+    font-size: 18px;
+    text-align: left;
+}
+.scoring-container {
+    display: flex;
+    justify-content: flex-start;
+}
+.single {
+    width: 425px;
+}
+.single, .double {
+    margin: 20px 10px;
+}
+.single > div > img, .double > div > img, .mixed {
+    margin-right: 10px;
     width: 100px;
     height: 100px;
     float: left;
 }
-.singleImg {
-    margin-left: 70px;
-    padding-right: 50px;
-
+.special {
+    padding: 0 40px;
+    font-size: 18px;
+    height: 100px;
+    text-align: left;
+    margin: 30px 0 20px 0;
+    text-transform: none;
 }
 .container {
     display: flex;
