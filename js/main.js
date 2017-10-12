@@ -6,12 +6,12 @@ var dice1, dice2, playerScore, rollScore, rollTextDisplay, currentRoundScore, tu
 
 // images
 imgs[0] = 'images/minion_rotate.png';
-imgs[1] = 'images/pos1_tongue.png';
-imgs[2] = 'images/pos2_uninterested.png';
-imgs[3] = 'images/pos3_cupcake.png';
-imgs[4] = 'images/pos4_happy.png';
-imgs[5] = 'images/pos5_dancing.png';
-imgs[6] = 'images/pos6_banana.png';
+imgs[1] = 'images/silly.png';
+imgs[2] = 'images/bored.png';
+imgs[3] = 'images/cupcake.png';
+imgs[4] = 'images/happy.png';
+imgs[5] = 'images/hula.png';
+imgs[6] = 'images/banana.png';
 
 // cached elements
 
