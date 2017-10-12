@@ -37,6 +37,7 @@ header{
 }
 .hidden2 {
     display: none;
+    overflow: scroll;
 }
 .hidden3 > button {
     margin: 30px 30px;
@@ -49,9 +50,28 @@ header{
 h1 {
     font-size: 30px;
 }
-.hidden > p {
+h2 {
+    font-size: 24px;
+    text-align: left;
+    margin: 10px 50px -10px;
+    text-decoration: underline;
+}
+.hidden > p, .scoring > p {
+    padding: 10px 50px;
     text-transform: none;
     font-size: 18px;
+    text-align: justify;
+}
+.scoring > p > img {
+    margin-right: 20px;
+    width: 100px;
+    height: 100px;
+    float: left;
+}
+.singleImg {
+    margin-left: 70px;
+    padding-right: 50px;
+
 }
 .container {
     display: flex;
@@ -147,8 +167,8 @@ button.x {
     padding: 10px 10px;
 }
 #playerSelect {
-    margin: 0 auto;
-    width: 550px;
+    margin: 20px auto;
+    width: 600px;
 }
 .gif-container {
     display: flex;
