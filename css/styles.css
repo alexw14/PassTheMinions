@@ -162,10 +162,10 @@ button {
     font-size: 30px;
 }
 button:hover {
-    background-color: #AA8B00;
+    background-color: #CAA603;
 }
 button:active {
-    background-color: #AA8B00;
+    background-color: #CAA603;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
