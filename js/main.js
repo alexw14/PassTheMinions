@@ -207,7 +207,12 @@ function render() {
     $('.newgame').css({ 'visibility': 'hidden' });
     if (hasWinner === false) turnUpdate();
     currentRoundScore === 0 ? $(`.display`).html(`Minion ${turn + 1}'s turn!`) : $(`.display`).html(`${currentRoundScore}`);
-    if (currentRoundScore === null) $(`.display`).html(`Let's Play!`);
+    if (currentRoundScore === null) {
+        $(`.display`).html(`Let's Play!`);
+        for (var i=1; i<=4; i++) {
+            $(`.score${i}`).html(`Points: 0`);
+        }
+    }
 }
 
 init();
