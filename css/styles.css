@@ -32,7 +32,7 @@ header{
     display: flex;
     justify-content: center;
 }
-.hidden1, .hidden2, .hidden3 {
+.hidden1, .hidden2 {
     display: none;
 }
 .hidden2 {
