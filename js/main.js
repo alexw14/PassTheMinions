@@ -176,7 +176,7 @@ function bank() {
 }
 function checkWinner() {
     if (playerScore[turn] >= 100) {
-        $(`.display`).html(`Player ${turn + 1} Wins!`)
+        $(`.display`).html(`Minion ${turn + 1} Wins!`)
         $(`.newgame`).css({ 'visibility': 'visible' });
         $(`button.bank`).prop(`disabled`, true);
         hasWinner = true;
@@ -186,7 +186,7 @@ function turnUpdate() {
     if (currentRoundScore === 0) {
         turn = (turn === numPlayers - 1) ? 0 : turn + 1;
     }
-    $(`.box`).css({ 'opacity': '0.6' });
+    $(`.box`).css({ 'opacity': '0.5' });
     $(`button.bank`).prop(`disabled`, true);
     $(`.p${turn + 1}`).css({ 'opacity': '1' });
     $(`button.bank${turn + 1}`).prop(`disabled`, false);
@@ -200,7 +200,7 @@ function render() {
     if (hasWinner === true) return;
     $('.newgame').css({ 'visibility': 'hidden' });
     if (hasWinner === false) turnUpdate();
-    currentRoundScore === 0 ? $(`.display`).html(`Player ${turn + 1}'s turn!`) : $(`.display`).html(`${currentRoundScore}`);
+    currentRoundScore === 0 ? $(`.display`).html(`Minion ${turn + 1}'s turn!`) : $(`.display`).html(`${currentRoundScore}`);
     if (currentRoundScore === null) $(`.display`).html(`Let's Play!`);
 }
 

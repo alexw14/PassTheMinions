@@ -13,10 +13,11 @@ body {
 }
 header{
     color: gold;
-    width: 400px;
+    width: 800px;
+    font-size: 60px;
     font-style: italic;
     font-weight: bold;
-    text-shadow: 2px 2px 8px black;
+    text-shadow: 4px 4px 8px black;
 }
 .top-container {
     display: flex;
@@ -24,7 +25,7 @@ header{
 }
 .hidden {
     width: 900px;
-    height: 700px;
+    height: 720px;
     background-color: white;
     display: block;
     z-index: 1;
@@ -41,8 +42,8 @@ header{
     display: none;
 }
 .hidden3 > button {
-    margin: 50px auto;
-    display: block;
+    margin: 30px 30px;
+    display: inline-block;
     font-size: 50px;
 }
 .container {
@@ -126,9 +127,21 @@ button:active {
     padding: 10px;
 }
 a {
-    font-size: 20px;
+    font-size: 18px;
     padding: 0 20px;
     color: black;
+}
+footer {
+    text-align: center;
+}
+button.x {
+    float: right;
+    font-size: 12px;
+    padding: 10px 10px;
+}
+#playerSelect {
+    margin: 0 auto;
+    width: 550px;
 }
 /* Properties that make the image rotate */
 /* img {
