@@ -144,6 +144,20 @@ button.x {
     margin: 0 auto;
     width: 550px;
 }
+.gif-container {
+    display: flex;
+    justify-content: center;
+}
+#gif {
+    background-image: url('../images/giphy.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 2;
+    width: 400px;
+    height: 200px;
+    position: absolute;
+    display: none;
+}
 /* Properties that make the image rotate */
 /* img {
     -webkit-animation-name: rotate; 

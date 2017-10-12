@@ -39,19 +39,19 @@ $(document).on('keyup', function (e) {
     }
 });
 $('.newgame').on('click', init);
-$('.about').on('click', function() {
+$('.about').on('click', function () {
     $(`.hidden1`).show();
 });
-$(`.hidden1`).on('click', 'button', function() {
+$(`.hidden1`).on('click', 'button', function () {
     $(`.hidden1`).hide();
 })
-$('.how').on('click', function() {
+$('.how').on('click', function () {
     $(`.hidden2`).show();
 });
-$(`.hidden2`).on('click', 'button', function() {
+$(`.hidden2`).on('click', 'button', function () {
     $(`.hidden2`).hide();
 });
-$('.numPlayers').on('click', function() {
+$('.numPlayers').on('click', function () {
     $(`.hidden3`).show();
 });
 $(`.hidden3`).on('click', 'button', function (num) {
@@ -179,6 +179,8 @@ function checkWinner() {
         $(`.display`).html(`Minion ${turn + 1} Wins!`)
         $(`.newgame`).css({ 'visibility': 'visible' });
         $(`button.bank`).prop(`disabled`, true);
+        $(`#gif`).delay(2000).fadeIn(500);
+        $(`#gif`).delay(2000).fadeOut(1000);
         hasWinner = true;
     }
 }
