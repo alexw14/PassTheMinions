@@ -110,16 +110,16 @@ main {
     font-size: 24px;
 }
 .p1 {
-    background-color: darkcyan;
+    background-color: #8e44ad;
 }
 .p2 {
-    background-color: slateblue;
+    background-color: darkcyan;
 }
 .p3 {
-    background-color: orchid;
+    background-color: #3F51B5;
 }
 .p4 {
-    background-color: yellowgreen;
+    background-color: darkred;
 }
 .p1, .p2, .p3, .p4 {
     height: 300px;
@@ -144,7 +144,7 @@ button {
     text-decoration: none;
     outline: none;
     color: #fff;
-    background-color: #D3B002;
+    background-color: #ECC203;
     border: none;
     border-radius: 15px;
     box-shadow: 0 9px #999;
