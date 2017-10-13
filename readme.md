@@ -11,13 +11,13 @@ The game board is created with 3 divs. The first div is the left container (red)
 <img src="images/screenshots/first.png">
 
 The Roll button and two Bank buttons are styled and event listeners using jquery are implemented for the roll function and the bank function. Two pig dice were used initially. The render function modifies and updates the content of the HTML and displays the corresponding score based on the positions of the dice.
-<img src"images/screenshots/second.png>
+<img src="images/screenshots/second.png">
 
 The Minions theme is applied and the check winner function is implemented. Images of Minions are used and replace the pig dice. The opacity of the Player 1 box and the Player 2 box also changes in order to indicate the player's turn. The game logic is working and can be played with 2 players.
-<img src"images/screenshots/third.png">
+<img src="images/screenshots/third.png">
 
 Styling using CSS is applied. Option for playing with up to four players is implemented. Keyboard controls are implememnted which includes using spacebar to roll and the "B" key to bank. About the game, how to play the game, and option to change the number of players are added on the bottom of the page.
-<img src"images/screenshots/last.png>
+<img src="images/screenshots/last.png">
 
 ## Technologies Used
 1. HTML
