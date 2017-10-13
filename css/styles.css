@@ -43,6 +43,9 @@ header{
     display: inline-block;
     font-size: 50px;
 }
+.hidden1 > div > img{
+    width: 700px;
+}
 .hidden3 > h1 {
     font-size: 40px;
 }
@@ -205,6 +208,9 @@ button.x {
     position: absolute;
     margin-top: 390px;
     display: none;
+}
+#disclaimer {
+    font-size: 12px;
 }
 @-webkit-keyframes rotate {
     from {
