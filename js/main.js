@@ -62,19 +62,11 @@ $(`.hidden3`).on('click', 'button', function (num) {    // Set numPlayers when t
 function rotate() {
     var rollDice1 = $('#dice1').attr('src', 'images/minion_rotate.png');    // Change the image of Minion during rotate
     var rollDice2 = $('#dice2').attr('src', 'images/minion_rotate.png');
-    $('.rotate').css({
-        '-webkit-animation-name': 'rotate',
-        '-webkit-animation-duration': '0.3s',
-        '-webkit-animation-iteration-count': 'infinite',
-        '-webkit-animation-timing-function': 'linear'
-    });
+    $('.rotate').addClass('rotate-dice');
 }
 // Stop rotate the images of Minions when mouse is released
 function stopRotate() {
-    $('.rotate').css({
-        '-webkit-animation-iteration-count': '1',
-        '-webkit-animation-timing-function': 'ease-out'
-    });
+    $('.rotate').removeClass('rotate-dice');
 }
 function init() {
     turn = 0;

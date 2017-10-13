@@ -212,11 +212,17 @@ button.x {
 #disclaimer {
     font-size: 10px;
 }
-@-webkit-keyframes rotate {
+@keyframes rotate {
     from {
-      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
     }
     to { 
-      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
     }
+}
+.rotate-dice  {
+    animation-name: rotate;
+    animation-duration: 0.3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
 }
