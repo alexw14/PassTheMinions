@@ -35,6 +35,9 @@ header{
 .hidden1, .hidden2 {
     display: none;
 }
+.hidden1 > div > img {
+    width: 700px;
+}
 .hidden2 {
     overflow: scroll;
 }
@@ -43,14 +46,8 @@ header{
     display: inline-block;
     font-size: 50px;
 }
-.hidden1 > div > img{
-    width: 700px;
-}
-.hidden3 > h1 {
-    font-size: 40px;
-}
 h1 {
-    font-size: 30px;
+    font-size: 40px;
 }
 h2 {
     font-size: 24px;
@@ -58,17 +55,16 @@ h2 {
     margin: 10px 50px -10px;
     text-decoration: underline;
 }
-.single > div, .double > div {
-    margin-top: 10px;
-    height: 100px;
-}
-.hidden > p, .single > div, .double > div {
+.hidden > p {
     padding: 10px 50px;
     text-transform: none;
     font-size: 18px;
     text-align: justify;
 }
 .single > div, .double > div{
+    text-transform: none;
+    margin-top: 10px;
+    height: 100px;
     padding: 0 30px;
     font-size: 18px;
     text-align: left;
@@ -212,6 +208,12 @@ button.x {
 #disclaimer {
     font-size: 10px;
 }
+.rotate-dice  {
+    animation-name: rotate;
+    animation-duration: 0.3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
 @keyframes rotate {
     from {
       transform: rotate(0deg);
@@ -219,10 +221,4 @@ button.x {
     to { 
       transform: rotate(360deg);
     }
-}
-.rotate-dice  {
-    animation-name: rotate;
-    animation-duration: 0.3s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
 }
