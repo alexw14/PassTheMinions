@@ -69,6 +69,9 @@ h2 {
     font-size: 18px;
     text-align: left;
 }
+.double > div {
+    margin-left: -50px;
+}
 .scoring-container {
     display: flex;
     justify-content: flex-start;
