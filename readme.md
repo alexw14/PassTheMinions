@@ -26,3 +26,4 @@ Styling using CSS is applied. Option for playing with up to four players is impl
 ## Next Steps
 1. Implement an alternative game mode to allows users to choose a set number of turns to play. For example, if set to 5 turns, the player with the highest score at the end of the 5th turn is the winner.
 2. Implement an option to allow users to set the max score.
+3. Make the application mobile compatible.
