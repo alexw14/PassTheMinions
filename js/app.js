@@ -15,8 +15,10 @@ var dice1, dice2, playerScore, rollScore, rollTextDisplay, currentRoundScore, tu
 // Event Listeners
 $('.roll').on('mousedown', rotate);         // Rotate the Minions when the roll button is pressed down
 $('.roll').on('mouseup', function () {      // Stop rotate and invoke the roll function when the roll button is released
-    stopRotate();
-    roll();
+    setTimeout(function(){
+        stopRotate();
+        roll();
+    },1000);
 });
 $(document).on('keydown', function (e) {    // Rotate the Minions when the spacebar is pressed down
     if (e.keyCode === 32) {                 // spacebar keycode: 32
@@ -25,8 +27,10 @@ $(document).on('keydown', function (e) {    // Rotate the Minions when the space
 });
 $(document).on('keyup', function (e) {      // Stop rotate and invoke the roll function when the spacebar is released
     if (e.keyCode === 32) {
-        stopRotate();
-        roll();
+        setTimeout(function(){
+            stopRotate();
+            roll();
+        },1000);
     }
 });
 $('.bank').on('click', bank);               // Invoke the bank function when the bank button is clicked
@@ -53,6 +57,19 @@ $('.numPlayers').on('click', function () {  // Show the Number of Players page w
 });
 $(`.hidden3`).on('click', 'button', function (num) {    // Set numPlayers when the number is clicked,
     numPlayers = (parseInt(num.target.innerHTML));
+    $('.box').css({'display' : 'block', 'padding' : '0px'});
+    if (numPlayers < 4) {
+        for (let i = numPlayers; i <= 4; i++) {
+            $(`.p${i + 1}.box`).css({'display' : 'none'});
+        }
+    }
+    if (numPlayers === 2) {
+        $(`.p1.box`).css({'padding' : '150px 0px'});
+        $(`.p2.box`).css({'padding' : '150px 0px'});
+    }
+    if (numPlayers === 3) {
+        $(`.p2.box`).css({'padding' : '150px 0px'});
+    }
     $('.hidden3').hide();                               // then hide the page,
     init();                                             // then start a new game
 });
