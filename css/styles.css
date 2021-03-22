@@ -185,9 +185,11 @@ footer {
     text-align: center;
 }
 button.x {
-    float: right;
     font-size: 12px;
     padding: 10px 10px;
+    position: absolute;
+    top: 12px;
+    right: 12px;
 }
 #playerSelect {
     margin: 20px auto;
